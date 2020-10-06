@@ -1,0 +1,17 @@
+<form class="" action="/" method="post">
+  <button onclick="myFunction()" id="myBtn"> Read more </button>
+</form>
+
+
+
+app.get("/post/:postName", function(req, res){
+  const requestedTitle = _.lowerCase(req.params.postName);
+
+  posts.forEach(function(post){
+    const storedTitle = _.lowerCase(post.title);
+    if (storedTitle === requestedTitle){
+      res.render( "post",{title: post.title, content: post.content});
+    }
+  });
+
+})
